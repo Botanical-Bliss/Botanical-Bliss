@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Neev - Botanical Bliss</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .team-card-hover:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 overflow-hidden" id="main-body">
+
+    <!-- ===== VIDEO INTRO OVERLAY ===== -->
+    <div id="intro-overlay" class="fixed inset-0 z-[100] bg-black flex items-center justify-center">
+        <!-- Video Element -->
+        <video id="intro-video" class="w-full h-full object-cover" playsinline>
+            <source src="111.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Start Button (Fallback if Autoplay is blocked by browser) -->
+        <button id="start-btn" class="hidden absolute z-50 bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-full font-bold text-xl shadow-2xl animate-bounce transition-all transform hover:scale-105 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+            </svg>
+            Start Project Neev
+        </button>
+
+        <!-- Skip Button (Optional, appearing at bottom right) -->
+        <button id="skip-btn" class="absolute bottom-8 right-8 text-white/50 hover:text-white text-sm border border-white/30 px-4 py-2 rounded-full transition-colors z-50">
+            Skip Intro
+        </button>
+    </div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="logo.png" alt="Botanical Bliss Logo" class="h-10 w-10 rounded-full object-cover transform transition-transform group-hover:scale-110" onerror="this.onerror=null; this.style.display='none'">
+                <span class="text-xl font-bold text-green-700">Project Neev</span>
+            </a>
+            <a href="index.html" class="text-gray-600 hover:text-green-700 font-semibold flex items-center gap-2 transition-colors text-sm md:text-base">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back to Product
+            </a>
+        </div>
+    </nav>
+
+    <!-- ===== HERO SECTION: PROJECT NEEV ===== -->
+    <header class="bg-gradient-to-r from-green-900 to-emerald-900 text-white py-20 lg:py-28 relative overflow-hidden">
+        <!-- Decorative circles -->
+        <div class="absolute top-0 left-0 -mt-20 -ml-20 w-64 h-64 rounded-full bg-green-500 opacity-10 blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 -mb-20 -mr-20 w-80 h-80 rounded-full bg-emerald-400 opacity-10 blur-3xl"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center fade-in-up">
+            <div class="inline-block bg-green-800/50 border border-green-500/30 rounded-full px-4 py-1 mb-6 backdrop-blur-sm">
+                <span class="text-green-300 font-semibold text-sm tracking-wider uppercase">Project Neev Initiative</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                Building the Future of <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-emerald-200">Organic Skincare</span>
+            </h1>
+            <p class="text-xl text-green-100 max-w-3xl mx-auto leading-relaxed font-light">
+                We are a team of 5 innovators on a mission. Starting with a single drop of Aloe Vera, we are building a brand that stands for purity, trust, and nature.
+            </p>
+        </div>
+    </header>
+
+    <!-- ===== THE VISION (Our Story) ===== -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2">
+                    <div class="relative">
+                        <!-- Image representing the team working/planning -->
+                        <img src="https://placehold.co/600x400/2f855a/ffffff?text=Team+Brainstorming" alt="Team Planning" class="rounded-2xl shadow-2xl transform rotate-2 hover:rotate-0 transition-all duration-500" onerror="this.src='https://placehold.co/600x400/2f855a/ffffff?text=Team+Image'">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg border-l-4 border-green-600 hidden md:block">
+                            <p class="font-bold text-green-800 text-lg">"Dream Big, Start Smart"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Our Journey & Ambition</h2>
+                    <p class="text-gray-600 text-lg mb-4 leading-relaxed">
+                        Hello! We are a group of 5 students participating in the <strong>Neev Project</strong>. What started as a simple school assignment has turned into a passion project.
+                    </p>
+                    <p class="text-gray-600 text-lg mb-4 leading-relaxed">
+                        We launched <strong>Botanical Bliss</strong> because we noticed a gap in the market for affordable, truly natural skincare. But this is just the beginning.
+                    </p>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed font-semibold text-green-700">
+                        We are confident that we can take this to a large scale.
+                    </p>
+                    <div class="bg-green-50 p-6 rounded-xl border border-green-100">
+                        <h3 class="font-bold text-green-800 mb-2">🚀 The Future Roadmap</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Expanding Botanical Bliss distribution.</li>
+                            <li>Researching new organic ingredients.</li>
+                            <li>Launching a full range of skincare products (Serums, Toners).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MEET THE TEAM ===== -->
+    <section class="py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Meet The Minds Behind The Magic</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">The 5 pillars of our project, working together to bring nature to your doorstep.</p>
+            </div>
+
+            <!-- Team Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                
+                <!-- Member 1: Pratham Dawra (CEO) -->
+                <div class="bg-white p-6 rounded-2xl shadow-md team-card-hover transition-all duration-300 text-center group">
+                    <div class="w-24 h-24 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4 overflow-hidden border-4 border-white shadow-sm group-hover:border-green-200">
+                        <span class="text-3xl font-bold text-green-600">PD</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Pratham Dawra</h3>
+                    <div class="inline-block bg-green-50 px-2 py-0.5 rounded-full mb-2">
+                        <p class="text-green-600 text-sm font-bold">Chief Executive Officer</p>
+                    </div>
+                    <p class="text-gray-500 text-xs">Driving the vision and strategy.</p>
+                </div>
+
+                <!-- Member 2: Anshuman Gupta (CFO) -->
+                <div class="bg-white p-6 rounded-2xl shadow-md team-card-hover transition-all duration-300 text-center group">
+                    <div class="w-24 h-24 mx-auto bg-emerald-100 rounded-full flex items-center justify-center mb-4 overflow-hidden border-4 border-white shadow-sm group-hover:border-emerald-200">
+                        <span class="text-3xl font-bold text-emerald-600">AG</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Anshuman Gupta</h3>
+                    <div class="inline-block bg-emerald-50 px-2 py-0.5 rounded-full mb-2">
+                        <p class="text-emerald-600 text-sm font-bold">Chief Financial Officer</p>
+                    </div>
+                    <p class="text-gray-500 text-xs">Managing operations and logistics.</p>
+                </div>
+
+                <!-- Member 3: Aayush Uprety (Marketing Head) - No Change -->
+                <div class="bg-white p-6 rounded-2xl shadow-md team-card-hover transition-all duration-300 text-center group transform scale-105 border-2 border-green-100">
+                    <div class="w-24 h-24 mx-auto bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mb-4 overflow-hidden border-4 border-white shadow-lg group-hover:border-emerald-300">
+                        <span class="text-3xl font-bold text-white">AU</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Aayush Uprety</h3>
+                    <div class="inline-block bg-green-100 px-3 py-1 rounded-full mb-2">
+                        <p class="text-green-800 text-sm font-bold">Marketing Head</p>
+                    </div>
+                    <p class="text-gray-500 text-xs">Leading brand strategy & growth.</p>
+                </div>
+
+                <!-- Member 4: Lakshya Singh (HR Head) -->
+                <div class="bg-white p-6 rounded-2xl shadow-md team-card-hover transition-all duration-300 text-center group">
+                    <div class="w-24 h-24 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4 overflow-hidden border-4 border-white shadow-sm group-hover:border-green-200">
+                        <span class="text-3xl font-bold text-green-600">LS</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Lakshya Singh</h3>
+                    <div class="inline-block bg-green-50 px-2 py-0.5 rounded-full mb-2">
+                         <p class="text-green-600 text-sm font-bold">HR Head</p>
+                    </div>
+                    <p class="text-gray-500 text-xs">Head of product research.</p>
+                </div>
+
+                <!-- Member 5: Ayush Bisht (Chief Operation) -->
+                <div class="bg-white p-6 rounded-2xl shadow-md team-card-hover transition-all duration-300 text-center group">
+                    <div class="w-24 h-24 mx-auto bg-emerald-100 rounded-full flex items-center justify-center mb-4 overflow-hidden border-4 border-white shadow-sm group-hover:border-emerald-200">
+                        <span class="text-3xl font-bold text-emerald-600">AB</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Ayush Bisht</h3>
+                    <div class="inline-block bg-emerald-50 px-2 py-0.5 rounded-full mb-2">
+                        <p class="text-emerald-600 text-sm font-bold">Chief Operation</p>
+                    </div>
+                    <p class="text-gray-500 text-xs">Creative direction & Design Lead.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OUR FLAGSHIP PRODUCT ===== -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">It All Starts Here</h2>
+            <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-8 md:p-12 shadow-inner max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/3">
+                     <!-- Using the main product image here -->
+                    <img src="00.png" alt="Botanical Bliss Bottle" class="mx-auto max-h-64 object-contain drop-shadow-xl transform hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://placehold.co/200x400/ffffff/22c55e?text=Product';">
+                </div>
+                <div class="w-full md:w-2/3 text-left">
+                    <h3 class="text-2xl font-bold text-green-800 mb-2">Botanical Bliss Aloe Moisturizer</h3>
+                    <p class="text-gray-600 mb-4">
+                        This isn't just a moisturizer; it's proof of our concept. We managed to create a high-quality, preservative-free formula that rivals top brands. 
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Using pure Aloe Vera gel as a base, we have eliminated the need for heavy oils, making it perfect for all skin types.
+                    </p>
+                    <a href="index.html#buy" class="text-green-600 font-bold hover:text-green-800 flex items-center gap-2 transition-colors">
+                        View Product Details
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex flex-col items-center justify-center mb-6">
+                <img src="logo.png" alt="Botanical Bliss Logo" class="h-16 w-16 rounded-full object-cover mb-3 opacity-90" onerror="this.onerror=null; this.style.display='none'">
+                <span class="text-2xl font-bold text-white">Project Neev</span>
+            </div>
+            <p class="mb-4">Created with ❤️ by Aayush Uprety</p>
+            <p>&copy; 2025 Botanical Bliss. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ===== VIDEO CONTROL SCRIPT ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('intro-overlay');
+            const video = document.getElementById('intro-video');
+            const startBtn = document.getElementById('start-btn');
+            const skipBtn = document.getElementById('skip-btn');
+            const body = document.getElementById('main-body');
+
+            // Function to remove overlay and show website
+            const closeOverlay = () => {
+                overlay.style.transition = 'opacity 1s ease';
+                overlay.style.opacity = '0';
+                body.classList.remove('overflow-hidden'); // Allow scrolling
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    video.pause(); // Ensure video stops
+                }, 1000);
+            };
+
+            // Try to play video automatically
+            const playVideo = async () => {
+                try {
+                    video.volume = 1.0; // Set volume
+                    await video.play();
+                    // If successful, ensure button is hidden
+                    startBtn.classList.add('hidden');
+                } catch (err) {
+                    // Autoplay blocked? Show the start button
+                    console.log("Autoplay prevented by browser policy. Waiting for user interaction.");
+                    startBtn.classList.remove('hidden');
+                }
+            };
+
+            // Event: User clicks Start Button
+            startBtn.addEventListener('click', () => {
+                video.play();
+                startBtn.classList.add('hidden');
+            });
+
+            // Event: Video Ends -> Close Overlay
+            video.addEventListener('ended', closeOverlay);
+
+            // Event: User clicks Skip -> Close Overlay
+            skipBtn.addEventListener('click', closeOverlay);
+
+            // Start attempt
+            playVideo();
+        });
+    </script>
+
+</body>
+</html>
