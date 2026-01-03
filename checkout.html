@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pay Now</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;   /* horizontal center */
+    align-items: center;       /* vertical center */
+    background: linear-gradient(135deg, #e6f7f0, #f9fffc);
+    font-family: Arial, sans-serif;
+  }
+
+  .payment-box {
+    padding: 40px 50px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    text-align: center;
+  }
+
+  .payment-box h2 {
+    margin-bottom: 10px;
+    color: #14532d;
+  }
+
+  .payment-box p {
+    margin-bottom: 25px;
+    color: #555;
+  }
+
+  /* Razorpay button ko center me force karna */
+  .razorpay-payment-button {
+    margin: 0 auto !important;
+    display: block !important;
+    padding: 14px 40px !important;
+    font-size: 18px !important;
+    border-radius: 999px !important;
+  }
+</style>
+</head>
+
+<body>
+
+  <div class="payment-box">
+    <h2>Botanical Bliss</h2>
+    <p>Aloe Vera Moisturizer – ₹249</p>
+
+    <form>
+      <script 
+        src="https://checkout.razorpay.com/v1/payment-button.js"
+        data-payment_button_id="pl_RzOmz4p0SmNXCS"
+        async>
+      </script>
+    </form>
+  </div>
+
+</body>
+</html>
