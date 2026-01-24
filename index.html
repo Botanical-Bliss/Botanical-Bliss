@@ -1,332 +1,211 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botanical bliss - Natural Aloe Moisturizer</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Base Font */
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-        /* Animation Classes */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+<meta charset="UTF-8">
+<title>Botanical Bliss – Natural Skincare</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="logo.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-        .backdrop-blur-md {
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
+<style>
+  body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
 
-        /* =========================================
-           PRINT SPECIFIC SETTINGS (Yaha magic hai)
-           ========================================= */
-        @media print {
-            /* 1. Page Setup: A4 Landscape */
-            @page {
-                size: A4 landscape;
-                margin: 5mm; /* Thoda margin taaki printer kinare na kaate */
-            }
+  .fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s ease;
+  }
+  .fade-up.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-            /* 2. Colors & Graphics Enable */
-            body {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                background-color: white !important;
-                zoom: 80%; /* Thoda zoom out taaki content faila hua dikhe par page par fit aaye */
-            }
-
-            /* 3. Prevent Cutting Elements (Sabse Zaruri) */
-            section, .grid, .card, img, h1, h2, h3, p {
-                break-inside: avoid !important;
-                page-break-inside: avoid !important;
-            }
-            
-            /* Heading ya Image ko page ke end me aadha na kate, naye page par le jaye */
-            h1, h2, h3 {
-                page-break-after: avoid;
-            }
-
-            /* 4. Disable Animations for Print (Taaki text gayab na ho) */
-            .fade-in-section {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
-            }
-
-            /* 5. Header Fix (Sticky hatao, nahi toh content dhak lega) */
-            header {
-                position: static !important;
-                background: white !important;
-                border-bottom: 1px solid #ddd;
-            }
-            
-            /* Navigation Links aur Buttons Print me nahi chahiye toh hata sakte hain 
-               (User ne kaha 'same' chahiye, isliye main hata nahi raha hu, bas adjust kar raha hu) */
-             nav a[href="checkout.html"] { display: none; } /* Sirf 'Buy Now' button hataya clean look ke liye */
-
-             /* 6. Text Contrast Fix */
-             .text-white {
-                 color: black !important; /* Agar printer BW hai toh white text dikhe */
-             }
-             /* Background dark hai toh text white hi rehne do */
-             .bg-gradient-to-br .text-white, footer .text-white {
-                 color: white !important; 
-             }
-        }
-    </style>
+  .modal-bg { background: rgba(0,0,0,0.65); }
+</style>
 </head>
-<body class="bg-gray-50 text-gray-900">
 
-    <header class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md shadow-sm">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-3 group">
-                <img src="logo.png" alt="Botanical Bliss Logo" class="h-10 w-10 rounded-full object-cover transform transition-transform group-hover:scale-110" onerror="this.onerror=null; this.style.display='none'">
-                <span class="text-2xl font-bold text-green-700">Botanical bliss</span>
-            </a>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#benefits" class="text-gray-600 hover:text-green-700 transition-colors">Benefits</a>
-                <a href="#ingredients" class="text-gray-600 hover:text-green-700 transition-colors">Ingredients</a>
-                <a href="#how-to-use" class="text-gray-600 hover:text-green-700 transition-colors">How to Use</a>
-                <a href="checkout.html" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold py-2 px-6 rounded-full hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-md transform hover:-translate-y-0.5 hover:shadow-lg">
-                    Buy Now
-                </a>
-            </div>
-            <button id="mobile-menu-btn" class="md:hidden text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-        </nav>
-        <div id="mobile-menu" class="md:hidden hidden bg-white/90 backdrop-blur-md p-4">
-            <a href="#benefits" class="block py-2 text-gray-600 hover:text-green-700">Benefits</a>
-            <a href="#ingredients" class="block py-2 text-gray-600 hover:text-green-700">Ingredients</a>
-            <a href="#how-to-use" class="block py-2 text-gray-600 hover:text-green-700">How to Use</a>
-            <a href="#checkout.html" class="block mt-2 w-full text-center bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold py-2 px-6 rounded-full hover:from-green-600 hover:to-emerald-700 transition-all duration-300">
-                Buy Now
-            </a>
-        </div>
-    </header>
+<body class="bg-gray-50 text-gray-900 overflow-x-hidden">
 
-    <main class="overflow-x-hidden">
-        <section class="min-h-screen flex items-center bg-white">
-            <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 items-center gap-8 pt-16 lg:pt-0">
-                <div class="text-center lg:text-left order-2 lg:order-1">
-                    <span class="text-green-600 font-semibold">100% Pure Aloe Vera</span>
-                    <h1 class="text-4xl md:text-6xl font-black text-gray-900 my-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-green-700 to-emerald-900">
-                        Give Your Skin <br>The Gift of Hydration.
-                    </h1>
-                    <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
-                        Experience radiant, soft, and healthy skin with Botanical bliss's non-greasy formula. Nature's finest moisturizer.
-                    </p>
-                    <a href="checkout.html" class="inline-block bg-gradient-to-r from-green-600 to-emerald-700 text-white font-bold py-3 px-10 rounded-full hover:from-green-700 hover:to-emerald-800 transition-all duration-300 shadow-lg text-lg transform hover:-translate-y-1 hover:scale-105">
-                        Shop Now
-                    </a>
-                </div>
-                
-                <div class="w-full flex justify-center items-center order-1 lg:order-2">
-                    <img src="00.png" alt="Botanical bliss Product" class="max-w-full h-auto max-h-[600px] object-contain drop-shadow-2xl transform hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x600/ffffff/22c55e?text=Botanical+Bliss+Product';">
-                </div>
-            </div>
-        </section>
+<!-- ================= NAVBAR ================= -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <img src="logo.png" class="h-9 w-9 rounded-full">
+      <span class="text-xl font-extrabold text-green-700">Botanical Bliss</span>
+    </div>
 
-        <section class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16 fade-in-section">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-4">More Than Just a Moisturizer</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">It's a complete care package for your skin. Perfect for every season, every skin type.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="bg-white p-8 rounded-2xl shadow-lg text-center fade-in-section transform hover:shadow-xl hover:-translate-y-2 transition-all duration-300" style="transition-delay: 100ms;">
-                        <div class="bg-green-100 text-green-700 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-14a4 4 0 100 8 4 4 0 000-8z" /></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-3">Deep Hydration</h3>
-                        <p class="text-gray-600">Locks in moisture deep within the skin, without any sticky feeling.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg text-center fade-in-section transform hover:shadow-xl hover:-translate-y-2 transition-all duration-300" style="transition-delay: 200ms;">
-                        <div class="bg-green-100 text-green-700 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-3">Skin Soothing</h3>
-                        <p class="text-gray-600">Instantly calms sunburn, redness, and irritation. Ideal for sensitive skin.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg text-center fade-in-section transform hover:shadow-xl hover:-translate-y-2 transition-all duration-300" style="transition-delay: 300ms;">
-                        <div class="bg-green-100 text-green-700 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-3">Natural Glow</h3>
-                        <p class="text-gray-600">Packed with vitamins and antioxidants, it gives your skin a natural, healthy glow.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Top Buy Now → Scroll only -->
+    <a href="#products"
+       class="bg-green-600 text-white px-4 py-2 rounded-full text-sm sm:text-base hover:bg-green-700 transition">
+      Buy Now
+    </a>
+  </div>
+</header>
 
-        <section id="benefits" class="py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20 fade-in-section">
-                    <div class="bg-gray-100 rounded-2xl h-80 flex items-center justify-center overflow-hidden">
-                        <img src="https://placehold.co/400x300/A0D9B5/333333?text=Deep+Hydration" alt="Deep Hydration" class="rounded-lg object-cover shadow-xl transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/400x300/A0D9B5/333333?text=Image+Error'">
-                    </div>
-                    <div>
-                        <span class="text-green-600 font-semibold">Long-lasting Moisture</span>
-                        <h3 class="text-3xl font-bold text-gray-900 mt-2 mb-4">Not Water, Aloe's Magic</h3>
-                        <p class="text-gray-600 text-lg">Common moisturizers are water-based and evaporate quickly. Botanical bliss's base is pure Aloe Vera, which absorbs into the skin to maintain hydration all day.</p>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center fade-in-section">
-                    <div class="lg:order-last bg-gray-100 rounded-2xl h-80 flex items-center justify-center overflow-hidden">
-                         <img src="https://placehold.co/400x300/C1E1C1/333333?text=Soothing+Effect" alt="Soothing Effect" class="rounded-lg object-cover shadow-xl transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/400x300/C1E1C1/333333?text=Image+Error'">
-                    </div>
-                    <div class="lg:order-first">
-                        <span class="text-green-600 font-semibold">Instant Relief</span>
-                        <h3 class="text-3xl font-bold text-gray-900 mt-2 mb-4">Relief from Irritation and Redness</h3>
-                        <p class="text-gray-600 text-lg">Aloe Vera's natural healing properties soothe your skin. It's a boon for after-shaving or sun-exposed skin.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ================= HERO ================= -->
+<section class="bg-gradient-to-br from-green-900 via-emerald-900 to-green-950 text-white text-center px-4 py-28">
+  <span class="inline-block mb-5 px-4 py-1 rounded-full bg-white/10 text-green-200 text-xs fade-up">
+    🌿 Clean • Natural • Effective
+  </span>
 
-        <section id="ingredients" class="py-24 bg-gradient-to-br from-green-700 via-emerald-800 to-green-900 text-white">
-            <div class="container mx-auto px-6 text-center fade-in-section">
-                <h2 class="text-4xl font-bold mb-4">From Nature, For You.</h2>
-                <p class="text-lg text-green-100 max-w-2xl mx-auto mb-12">We only use what's essential. No harsh chemicals, no artificial fragrances.</p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl transform hover:bg-white/20 hover:scale-105 transition-all duration-300">
-                        <h4 class="text-xl font-bold">99% Pure Aloe Vera</h4>
-                        <p class="text-green-100 mt-2">Our star ingredient, straight from the farm.</p>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl transform hover:bg-white/20 hover:scale-105 transition-all duration-300">
-                        <h4 class="text-xl font-bold">Vitamin E</h4>
-                        <p class="text-green-100 mt-2">Repairs and protects the skin.</p>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl transform hover:bg-white/20 hover:scale-105 transition-all duration-300">
-                        <h4 class="text-xl font-bold">Hyaluronic Acid</h4>
-                        <p class="text-green-100 mt-2">Attracts moisture to plump the skin.</p>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl transform hover:bg-white/20 hover:scale-105 transition-all duration-300">
-                        <h4 class="text-xl font-bold">Paraben & Sulfate Free</h4>
-                        <p class="text-green-100 mt-2">100% safe, 0% compromise.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-5 leading-tight fade-up">
+    Nature Meets <br>
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-emerald-200">
+      Skin Science
+    </span>
+  </h1>
 
-        <section id="how-to-use" class="py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16 fade-in-section">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-4">For Best Results</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Get healthy skin in just 3 easy steps.</p>
-                </div>
-                <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-px border-t-2 border-dashed border-gray-300" style="margin-top: -30px; z-index: 0;"></div>
-                    
-                    <div class="text-center z-10 fade-in-section transform transition-transform duration-300 hover:scale-110" style="transition-delay: 100ms;">
-                        <div class="relative">
-                            <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-lg">1</div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Cleanse</h3>
-                        <p class="text-gray-600">Cleanse your face with a facewash and pat dry.</p>
-                    </div>
-                    <div class="text-center z-10 fade-in-section transform transition-transform duration-300 hover:scale-110" style="transition-delay: 200ms;">
-                        <div class="relative">
-                            <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-lg">2</div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Apply</h3>
-                        <p class="text-gray-600">Take a pea-sized amount of Botanical bliss moisturizer.</p>
-                    </div>
-                    <div class="text-center z-10 fade-in-section transform transition-transform duration-300 hover:scale-110" style="transition-delay: 300ms;">
-                        <div class="relative">
-                            <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-lg">3</div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Massage</h3>
-                        <p class="text-gray-600">Gently massage in a circular motion until absorbed.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <p class="text-green-100 max-w-xl mx-auto mb-8 text-base sm:text-lg fade-up">
+    Aloe-powered skincare that hydrates, repairs and protects your skin —
+    without harmful chemicals.
+  </p>
 
-        <section id="buy" class="py-24 bg-gray-100">
-            <div class="container mx-auto px-6 text-center fade-in-section">
-                <img src="logo.png" alt="Botanical Bliss Logo" class="mx-auto mb-6 h-24 w-24 rounded-full object-cover shadow-lg transform hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.style.display='none'">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Why Wait?</h2>
-                <p class="text-lg text-gray-600 max-w-xl mx-auto mb-8">
-                    Start your healthy skin journey today. Get a special 15% discount on your first order.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a href="#" class="inline-block bg-gradient-to-r from-green-600 to-emerald-700 text-white font-bold py-4 px-10 rounded-full hover:from-green-700 hover:to-emerald-800 transition-all duration-300 shadow-lg text-lg transform hover:-translate-y-1 hover:shadow-xl">
-                        Order Now & Get 15% Off
-                    </a>
-                    <a href="about.html" class="inline-block bg-white text-green-700 border-2 border-green-600 font-bold py-4 px-10 rounded-full hover:bg-green-50 transition-all duration-300 shadow-md text-lg transform hover:-translate-y-1 hover:shadow-lg">
-                        Know More About Us
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
+  <a href="#products"
+     class="inline-block bg-white text-green-800 font-bold px-8 py-3 rounded-full hover:scale-105 transition fade-up">
+    Explore Products
+  </a>
+</section>
 
-    <footer class="bg-gradient-to-t from-black to-gray-900 text-gray-400 py-12">
-        <div class="container mx-auto px-6 text-center">
-            <div class="flex flex-col items-center justify-center mb-6">
-                <img src="logo.png" alt="Botanical Bliss Logo" class="h-16 w-16 rounded-full object-cover mb-3 opacity-90 hover:opacity-100 transition-opacity shadow-md" onerror="this.onerror=null; this.style.display='none'">
-                <span class="text-2xl font-bold text-white">Botanical bliss</span>
-            </div>
-            
-            <div class="flex justify-center space-x-6 mb-6">
-                <a href="#" class="hover:text-white hover:underline transition-colors">Facebook</a>
-                <a href="#" class="hover:text-white hover:underline transition-colors">Instagram</a>
-                <a href="#" class="hover:text-white hover:underline transition-colors">Twitter</a>
-            </div>
-            <p>&copy; 2025 Botanical bliss Wellness. All rights reserved.</p>
-        </div>
-    </footer>
+<!-- ================= WHY US ================= -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 fade-up">
+      Why Choose Botanical Bliss?
+    </h2>
+    <p class="text-gray-600 max-w-xl mx-auto mb-14 fade-up">
+      Honest skincare made with care, science and nature.
+    </p>
 
-    <script>
-        // === MOBILE MENU SCRIPT ===
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
+    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+      <div class="bg-gray-50 p-8 rounded-2xl shadow fade-up">
+        🌿
+        <h3 class="text-xl font-bold mt-4">Truly Natural</h3>
+        <p class="text-gray-600 mt-2">
+          Aloe Vera based formulas — no parabens, no sulphates.
+        </p>
+      </div>
 
-        // === SCROLL FADE-IN ANIMATION SCRIPT ===
-        try {
-            const sections = document.querySelectorAll('.fade-in-section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, { threshold: 0.1 });
+      <div class="bg-gray-50 p-8 rounded-2xl shadow fade-up">
+        💧
+        <h3 class="text-xl font-bold mt-4">Skin First</h3>
+        <p class="text-gray-600 mt-2">
+          Lightweight, non-greasy and suitable for all skin types.
+        </p>
+      </div>
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        } catch (error) {
-            console.error("IntersectionObserver error:", error);
-        }
-    </script>
+      <div class="bg-gray-50 p-8 rounded-2xl shadow fade-up">
+        🧪
+        <h3 class="text-xl font-bold mt-4">Safe & Tested</h3>
+        <p class="text-gray-600 mt-2">
+          Carefully crafted for long-term skin health.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section id="products" class="py-24 bg-gray-100">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 fade-up">
+      Our Products
+    </h2>
+    <p class="text-gray-600 mb-14 fade-up">
+      Tap on a product to know more
+    </p>
+
+    <div class="grid gap-10 sm:grid-cols-2 md:grid-cols-3">
+
+      <!-- Moisturizer -->
+      <div onclick="openModal('moisturizer')" class="cursor-pointer bg-white p-6 rounded-3xl shadow-lg fade-up">
+        <img src="00.png" class="h-44 mx-auto mb-4">
+        <h3 class="text-xl font-bold">Aloe Vera Moisturizer</h3>
+        <p class="text-gray-600 mt-1">Deep hydration • Non-greasy</p>
+        <p class="text-xl font-bold mt-3 text-green-700">₹249</p>
+      </div>
+
+      <!-- Serum -->
+      <div onclick="openModal('serum')" class="cursor-pointer bg-white p-6 rounded-3xl shadow-lg fade-up">
+        <img src="serum.jpg" class="h-44 mx-auto mb-4">
+        <h3 class="text-xl font-bold">Glow Repair Serum</h3>
+        <p class="text-gray-600 mt-1">Brightening • Repairing</p>
+        <p class="text-xl font-bold mt-3 text-green-700">₹249</p>
+      </div>
+
+      <!-- Lip Balm -->
+      <div onclick="openModal('lip')" class="cursor-pointer bg-white p-6 rounded-3xl shadow-lg fade-up">
+        <img src="lip.jpg" class="h-44 mx-auto mb-4">
+        <h3 class="text-xl font-bold">Herbal Lip Balm</h3>
+        <p class="text-gray-600 mt-1">Soft • Nourished lips</p>
+        <p class="text-xl font-bold mt-3 text-green-700">₹249</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= MODAL ================= -->
+<div id="modal" class="fixed inset-0 hidden items-center justify-center modal-bg z-50 px-4">
+  <div class="bg-white rounded-3xl w-full max-w-md p-6 relative">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-xl">✖</button>
+    <h3 id="modalTitle" class="text-xl font-bold mb-3"></h3>
+    <p id="modalText" class="text-gray-600 mb-6 text-sm"></p>
+
+    <!-- REAL PAYMENT -->
+    <a href="checkout.html"
+       class="block text-center bg-green-600 text-white py-4 rounded-full text-lg font-bold">
+      Buy Now ₹249
+    </a>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-gray-900 text-gray-400 py-10 text-center text-sm">
+  <img src="logo.png" class="h-14 mx-auto mb-3 rounded-full">
+  <p class="text-white font-bold">Botanical Bliss</p>
+  <p class="mt-1">&copy; 2025 All Rights Reserved</p>
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  /* Scroll animation */
+  const items = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('show');
+    });
+  }, { threshold: 0.15 });
+
+  items.forEach(item => observer.observe(item));
+
+  /* Modal */
+  function openModal(type) {
+    const t = document.getElementById('modalTitle');
+    const d = document.getElementById('modalText');
+
+    if (type === 'moisturizer') {
+      t.innerText = "Aloe Vera Moisturizer";
+      d.innerText = "Aloe-based moisturizer that deeply hydrates, soothes irritation and keeps skin soft all day without oiliness.";
+    }
+    if (type === 'serum') {
+      t.innerText = "Glow Repair Serum";
+      d.innerText = "Fast-absorbing serum that repairs damage, improves texture and boosts natural glow.";
+    }
+    if (type === 'lip') {
+      t.innerText = "Herbal Lip Balm";
+      d.innerText = "Deeply nourishing lip balm that heals dryness, locks moisture and adds a healthy shine.";
+    }
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+</script>
+
 </body>
 </html>
